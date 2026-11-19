@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechLab - Mini Simulator</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #101827;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 16px;
+      width: 340px;
+    }
+
+    h1 { color: #38bdf8; }
+
+    input {
+      width: 100%;
+      margin: 15px 0;
+      accent-color: #38bdf8;
+    }
+
+    .result {
+      background: #0f172a;
+      padding: 18px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .number {
+      font-size: 32px;
+      color: #4ade80;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h1>TechLab</h1>
+    <p>Experiment with distance and speed.</p>
+
+    <label>Distance: <span id="distanceValue">20</span> km</label>
+    <input id="distance" type="range" min="1" max="100" value="20">
+
+    <label>Speed: <span id="speedValue">4</span> km/s</label>
+    <input id="speed" type="range" min="1" max="10" value="4">
+
+    <div class="result">
+      <p>Calculated travel time:</p>
+      <div class="number" id="result">5.00 seconds</div>
+    </div>
+  </div>
+
+  <script>
+    const distance = document.getElementById("distance");
+    const speed = document.getElementById("speed");
+
+    function calculate() {
+      const d = Number(distance.value);
+      const s = Number(speed.value);
+
+      document.getElementById("distanceValue").textContent = d;
+      document.getElementById("speedValue").textContent = s;
+
+      const time = d / s;
+
+      document.getElementById("result").textContent =
+        time.toFixed(2) + " seconds";
+    }
+
+    distance.addEventListener("input", calculate);
+    speed.addEventListener("input", calculate);
+  </script>
+</body>
+</html>
